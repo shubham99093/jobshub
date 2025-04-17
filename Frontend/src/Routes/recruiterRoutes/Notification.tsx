@@ -9,6 +9,7 @@ import { Modal } from "react-responsive-modal";
 import Swal from "sweetalert2";
 import nodata from "../../../img/nodata.png";
 import { IJobApplication } from "../../utils/types";
+import { BACKEND_URL } from "../../config";
 const Notification = () => {
   const navigate = useNavigate();
   const [userdata, setuserData] = useState<IJobApplication[] | null>(null);
@@ -35,7 +36,7 @@ const Notification = () => {
 
   const getjobApplieduser = async () => {
     const response = await fetch(
-      "http://localhost:5000/getapplieduser",
+      `${BACKEND_URL}/getapplieduser`,
       requestoption
     );
     const result = await response.json();
@@ -53,7 +54,7 @@ const Notification = () => {
       },
     };
     const response = await fetch(
-      `http://localhost:5000/acceptrequest/${id}`,
+      `${BACKEND_URL}/acceptrequest/${id}`,
       confiOption
     );
     const result = await response.json();
@@ -75,10 +76,7 @@ const Notification = () => {
         "Content-Type": "application/json",
       },
     };
-    const data = await fetch(
-      `http://localhost:5000/acceptmail/${id}`,
-      configOption
-    );
+    const data = await fetch(`${BACKEND_URL}/acceptmail/${id}`, configOption);
     const res = await data.json();
     if (res.status === 201) {
       Swal.fire({
@@ -108,7 +106,7 @@ const Notification = () => {
     };
 
     const response = await fetch(
-      `http://localhost:5000/rejectrequest/${r?.id}`,
+      `${BACKEND_URL}/rejectrequest/${r?.id}`,
       confiOption
     );
     const result = await response.json();
@@ -130,7 +128,7 @@ const Notification = () => {
   //             <a href="job-detail.html">
   //               {" "}
   //               <img
-  //                 src={`http://localhost:5000/public/uploads1/seekerprofile/${item?.js_id?.js_profile}`}
+  //                 src={`${BACKEND_URL}/public/uploads1/seekerprofile/${item?.js_id?.js_profile}`}
   //                 className="avatar-lg"
   //                 alt="Avatar"
   //               />
@@ -177,7 +175,7 @@ const Notification = () => {
   //             <Link
   //               target="_blank"
   //               className="cl-primary mrg-5"
-  //               to={`http://localhost:5000/public/uploads1/resume/${item?.resume}`}
+  //               to={`${BACKEND_URL}/public/uploads1/resume/${item?.resume}`}
   //             >
   //               <i className="fa fa-eye" />
   //             </Link>
@@ -290,7 +288,7 @@ const Notification = () => {
                             <a href="job-detail.html" className="text-success">
                               {" "}
                               <img
-                                src={`http://localhost:5000/public/uploads1/seekerprofile/${
+                                src={`${BACKEND_URL}/public/uploads1/seekerprofile/${
                                   item?.js_id?.js_profile
                                     ? item?.js_id?.js_profile
                                     : "default.jpg"
@@ -346,7 +344,7 @@ const Notification = () => {
                             <Link
                               target="_blank"
                               className="cl-primary mrg-5"
-                              to={`http://localhost:5000/public/uploads1/resume/${item?.resume}`}
+                              to={`${BACKEND_URL}/public/uploads1/resume/${item?.resume}`}
                             >
                               <i className="fa fa-eye" />
                             </Link>

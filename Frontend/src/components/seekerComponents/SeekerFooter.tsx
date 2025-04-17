@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import Load from "../../Load";
 // import ReactStars from "react-rating-stars-component";
 import { toast } from "react-toastify";
+import { BACKEND_URL } from "../../config";
 
 function SeekerFooter() {
   useEffect(() => {
@@ -34,10 +35,7 @@ function SeekerFooter() {
       },
     };
 
-    const response = await fetch(
-      "http://localhost:5000/getseekerreview",
-      config
-    );
+    const response = await fetch(`${BACKEND_URL}/getseekerreview`, config);
     const result = await response.json();
 
     setRev(result.review);
@@ -59,7 +57,7 @@ function SeekerFooter() {
       body: JSON.stringify(r),
     };
 
-    const response = await fetch("http://localhost:5000/seekerreview", config);
+    const response = await fetch(`${BACKEND_URL}/seekerreview`, config);
     const result = await response.json();
 
     if (result.status === 201) {

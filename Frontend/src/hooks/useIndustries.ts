@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { IIndustrys } from "../utils/types";
+import { BACKEND_URL } from "../config";
 
 const useIndustries = () => {
   const [industries, setIndustries] = useState<IIndustrys[] | null>(null);
@@ -13,10 +14,7 @@ const useIndustries = () => {
       },
     };
     try {
-      const res = await fetch(
-        "http://localhost:5000/homeviewindustry",
-        configOption
-      );
+      const res = await fetch(`${BACKEND_URL}/homeviewindustry`, configOption);
       const data: IIndustrys[] = await res.json();
       setIndustries(data);
     } catch (error) {

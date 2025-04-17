@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
+import { BACKEND_URL } from "../config";
 
 const useUser = <T>(token: string) => {
   const [user, setUser] = useState<T | null>(null);
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const res = await fetch("http://localhost:5000/getseeker", {
+        const res = await fetch(`${BACKEND_URL}/getseeker`, {
           method: "GET",
           headers: {
             Accept: "application/json",

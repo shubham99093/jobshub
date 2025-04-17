@@ -8,6 +8,7 @@ import Loader from "../../components/Loader";
 import { useForm } from "react-hook-form";
 import PageTitle from "../../components/PageTitle";
 import { useRecruiter } from "../../contexts/RecruiterContext";
+import { BACKEND_URL } from "../../config";
 
 // import toast, { Toaster } from 'react-hot-toast';
 function RecruiterLogin() {
@@ -44,10 +45,7 @@ function RecruiterLogin() {
         body: JSON.stringify(newData1),
       };
 
-      const response = await fetch(
-        "http://localhost:5000/reclogin",
-        requestOptions
-      );
+      const response = await fetch(`${BACKEND_URL}/reclogin`, requestOptions);
       const result = await response.json();
       if (result.status !== 8) {
         if (result.status === 200) {

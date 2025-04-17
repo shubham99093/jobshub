@@ -15,6 +15,7 @@ import {
 } from "../../utils/recruiterInto";
 import { useRecruiter } from "../../contexts/RecruiterContext";
 import { IJobPost } from "../../utils/types";
+import { BACKEND_URL } from "../../config";
 
 function AddJob() {
   const navigate = useNavigate();
@@ -94,10 +95,7 @@ function AddJob() {
         },
         body: JSON.stringify(jobdata),
       };
-      const response = await fetch(
-        "http://localhost:5000/jobpost",
-        requestOptions
-      );
+      const response = await fetch(`${BACKEND_URL}/jobpost`, requestOptions);
       const result = await response.json();
       if (result.status === 200) {
         toast.success("job post successfully");

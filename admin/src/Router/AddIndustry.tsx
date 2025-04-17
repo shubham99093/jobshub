@@ -4,6 +4,7 @@ import { useState } from "react";
 import { IIndustrys } from "../utils/types";
 import { useAdmin } from "../context/adminContext";
 import { useNavigate } from "react-router-dom";
+import { BACKEND_URL } from "../config";
 
 const AddIndustry = () => {
   const { industry, setIndustry } = useAdmin();
@@ -15,7 +16,7 @@ const AddIndustry = () => {
       toast.error("Enter industry name");
       return;
     }
-    const responce = await fetch(`http://localhost:5000/addindustry`, {
+    const responce = await fetch(`${BACKEND_URL}/addindustry`, {
       method: "POST",
       body: JSON.stringify({ ind_name: indName }),
       headers: { "Content-Type": "application/json" },

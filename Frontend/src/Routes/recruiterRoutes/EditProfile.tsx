@@ -16,6 +16,7 @@ import TextBox from "../../components/TextBox";
 import SelectBox from "../../components/SelectBox";
 import ManageProfileOption from "../../components/ManageProfileOption";
 import ChangepasswordModel from "../../components/ChangePasswordModel";
+import { BACKEND_URL } from "../../config";
 
 function EditProfile() {
   const [categorydata, setCategorydata] = useState<ICategoryry[] | null>(null);
@@ -35,10 +36,7 @@ function EditProfile() {
     };
 
     const fetchcategory = async () => {
-      const response = await fetch(
-        "http://localhost:5000/industry",
-        requestOptions
-      );
+      const response = await fetch(`${BACKEND_URL}/industry`, requestOptions);
       const categoryres: { data: { _id: string; ind_name: string }[] } =
         await response.json();
       const category_list: ICategoryry[] = [];
@@ -76,10 +74,7 @@ function EditProfile() {
       },
       body: JSON.stringify(inputdata),
     };
-    const response = await fetch(
-      "http://localhost:5000/createcmp",
-      confiOption
-    );
+    const response = await fetch(`${BACKEND_URL}/createcmp`, confiOption);
     const result = await response.json();
     if (result.status === 200) {
       setRecruiter(inputdata);
@@ -106,10 +101,7 @@ function EditProfile() {
       },
       body: formdata,
     };
-    const response = await fetch(
-      "http://localhost:5000/cmpupdatelogo",
-      configOption
-    );
+    const response = await fetch(`${BACKEND_URL}/cmpupdatelogo`, configOption);
     const result = await response.json();
     if (result.status === 201) {
       toast.success("Profile Picture Update");

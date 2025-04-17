@@ -10,6 +10,7 @@ import nodata from "../../../img/nodata.png";
 import { useSeeker } from "../../contexts/SeekerContext";
 import { IExtendedJob } from "../../utils/types";
 import PageTitle from "../../components/PageTitle";
+import { BACKEND_URL } from "../../config";
 
 function JobHistory() {
   const navigate = useNavigate();
@@ -36,7 +37,7 @@ function JobHistory() {
       },
     };
 
-    const data = await fetch("http://localhost:5000/jobhistory", configOption);
+    const data = await fetch(`${BACKEND_URL}/jobhistory`, configOption);
 
     const result = await data.json();
     setAppliedJobs(result);
@@ -57,7 +58,7 @@ function JobHistory() {
       },
     };
     const data = await fetch(
-      `http://localhost:5000/jobbackup/${del?._id}`,
+      `${BACKEND_URL}/jobbackup/${del?._id}`,
       configOption
     );
     const result = await data.json();
@@ -139,10 +140,10 @@ function JobHistory() {
                         <tr>
                           <td>
                             <img
-                              // src={`http://localhost:5000/public/uploads1/companylogo/${item?.rec_id?.cmp_logo}`}
+                              // src={`${BACKEND_URL}/public/uploads1/companylogo/${item?.rec_id?.cmp_logo}`}
                               src={
                                 item?.rec_id?.cmp_logo
-                                  ? `http://localhost:5000/public/uploads1/companylogo/${item?.rec_id?.cmp_logo}`
+                                  ? `${BACKEND_URL}/public/uploads1/companylogo/${item?.rec_id?.cmp_logo}`
                                   : pic
                               }
                               className="avatar-lg"

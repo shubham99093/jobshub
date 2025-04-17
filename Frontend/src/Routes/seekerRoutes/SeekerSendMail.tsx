@@ -5,6 +5,7 @@ import "react-toastify/dist/ReactToastify.css";
 import OTPInput from "react-otp-input";
 import Loader from "../../components/Loader";
 import PageTitle from "../../components/PageTitle";
+import { BACKEND_URL } from "../../config";
 
 function SeekerSendMail() {
   const [isLoading, setIsLoading] = useState(true);
@@ -32,7 +33,7 @@ function SeekerSendMail() {
   const OtpRequestFunction = async (e: React.MouseEvent) => {
     //  form Validation
     e.preventDefault();
-    const res = await fetch("http://localhost:5000/mail", {
+    const res = await fetch(`${BACKEND_URL}/mail`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -63,7 +64,7 @@ function SeekerSendMail() {
         },
         body: JSON.stringify(veri),
       };
-      const resp = await fetch("http://localhost:5000/seekerotpverify", config);
+      const resp = await fetch(`${BACKEND_URL}/seekerotpverify`, config);
       const result = await resp.json();
       if (result.status === 201) {
         toast.success(result.msg);
@@ -83,10 +84,7 @@ function SeekerSendMail() {
         },
         body: JSON.stringify(data),
       };
-      const response = await fetch(
-        "http://localhost:5000/seekerforgot",
-        config
-      );
+      const response = await fetch(`${BACKEND_URL}/seekerforgot`, config);
       const result = await response.json();
       if (result.status === 201) {
         toast.success(result.msg);

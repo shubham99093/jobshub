@@ -6,6 +6,7 @@ import { RecHeader, RecFooter } from "../../components/recruiterComponents";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import PageTitle from "../../components/PageTitle";
+import { BACKEND_URL } from "../../config";
 
 interface RazorpayResponse {
   razorpay_payment_id: string;
@@ -29,7 +30,7 @@ function Payment() {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(_data),
     };
-    const response = await fetch("http://localhost:5000/order", requestOptions);
+    const response = await fetch(`${BACKEND_URL}/order`, requestOptions);
     const result: {
       data: { id: string; currency: string };
       massage: string;
@@ -75,10 +76,7 @@ function Payment() {
           },
           body: JSON.stringify({ ...response, packagename }),
         };
-        const res = await fetch(
-          "http://localhost:5000/verify",
-          requestOptions1
-        );
+        const res = await fetch(`${BACKEND_URL}/verify`, requestOptions1);
         const result = await res.json();
         if (result.status === 200) {
           toast.success("payment success");

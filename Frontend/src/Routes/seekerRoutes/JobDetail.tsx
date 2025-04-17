@@ -4,6 +4,7 @@ import { SeekerFooter, SeekerHeader } from "../../components/seekerComponents";
 import "react-responsive-modal/styles.css";
 import PageTitle from "../../components/PageTitle";
 import { IExtendedJob } from "../../utils/types";
+import { BACKEND_URL } from "../../config";
 
 function JobDetail() {
   const location = useLocation();
@@ -29,7 +30,7 @@ function JobDetail() {
       },
     };
     const response = await fetch(
-      `http://localhost:5000/jobdetail/${id}`,
+      `${BACKEND_URL}/jobdetail/${id}`,
       configOption
     );
     const result = await response.json();
@@ -59,7 +60,7 @@ function JobDetail() {
                         <div className="col-md-4 text-center user_profile_img">
                           {" "}
                           <img
-                            src={`http://localhost:5000/public/uploads1/companylogo/${jobdata?.postedby?.cmp_logo}`}
+                            src={`${BACKEND_URL}/public/uploads1/companylogo/${jobdata?.postedby?.cmp_logo}`}
                             className="width-100"
                             alt="No image"
                           />

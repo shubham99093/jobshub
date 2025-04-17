@@ -3,6 +3,7 @@ import Modal from "react-responsive-modal";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useRecruiter } from "../contexts/RecruiterContext";
+import { BACKEND_URL } from "../config";
 
 interface IChangePassword {
   open: boolean;
@@ -45,9 +46,7 @@ const ChangepasswordModel = ({
       };
 
       const response = await fetch(
-        `http://localhost:5000/${
-          user === "seeker" ? "changepass" : "recchangepass"
-        }`,
+        `${BACKEND_URL}/${user === "seeker" ? "changepass" : "recchangepass"}`,
         configOPtion
       );
       const result = await response.json();

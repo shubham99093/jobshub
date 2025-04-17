@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import nodata from "../../../img/nodata.png";
 import { IApplicationList } from "../../utils/types";
 import { useRecruiter } from "../../contexts/RecruiterContext";
+import { BACKEND_URL } from "../../config";
 const RejectList = () => {
   useEffect(() => {
     getRejetList();
@@ -19,10 +20,7 @@ const RejectList = () => {
   };
 
   const getRejetList = async () => {
-    const response = await fetch(
-      "http://localhost:5000/rejectlist",
-      requestoption
-    );
+    const response = await fetch(`${BACKEND_URL}/rejectlist`, requestoption);
     const result = await response.json();
     setuserData(result);
   };
@@ -51,7 +49,7 @@ const RejectList = () => {
                             <a href="job-detail.html">
                               {" "}
                               <img
-                                src={`http://localhost:5000/public/uploads1/seekerprofile/${item?.js_id?.js_profile}`}
+                                src={`${BACKEND_URL}/public/uploads1/seekerprofile/${item?.js_id?.js_profile}`}
                                 className="avatar-lg"
                                 alt="Avatar"
                               />

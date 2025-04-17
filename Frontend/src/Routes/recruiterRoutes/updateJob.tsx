@@ -13,6 +13,7 @@ import {
   jobtypeOption,
   interviewtypeOption,
 } from "../../utils/recruiterInto";
+import { BACKEND_URL } from "../../config";
 
 function UpdateJob() {
   const location = useLocation();
@@ -76,7 +77,7 @@ function UpdateJob() {
       body: JSON.stringify(jobdata),
     };
     const response = await fetch(
-      `http://localhost:5000/updatejob/${id}`,
+      `${BACKEND_URL}/updatejob/${id}`,
       requestOptions
     );
     const result = await response.json();
@@ -92,7 +93,7 @@ function UpdateJob() {
   /* *********** fetch jobdata *********  */
   // const fetchjobData = async () => {
   //   const response = await fetch(
-  //     `http://localhost:5000/getperticularjob/${id}`,
+  //     `${BACKEND_URL}/getperticularjob/${id}`,
   //     requestOptions
   //   );
   //   const result = await response.json();
@@ -101,7 +102,7 @@ function UpdateJob() {
   /* *********** fetch category *********  */
   // const fetchcategory = async () => {
   //   const response = await fetch(
-  //     "http://localhost:5000/industry",
+  //     `${BACKEND_URL}/industry`,
   //     requestOptions
   //   );
   //   const categoryres = await response.json();

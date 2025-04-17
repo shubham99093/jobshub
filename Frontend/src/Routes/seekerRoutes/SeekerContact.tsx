@@ -7,6 +7,7 @@ import { SeekerHeader, SeekerFooter } from "../../components/seekerComponents";
 import { useSeeker } from "../../contexts/SeekerContext";
 import PageTitle from "../../components/PageTitle";
 import { ISeeker } from "../../utils/types";
+import { BACKEND_URL } from "../../config";
 
 interface ISeekerData extends ISeeker {
   js_sub?: string;
@@ -41,10 +42,7 @@ function SeekerContact() {
       },
       body: JSON.stringify(seekerData),
     };
-    const response = await fetch(
-      "http://localhost:5000/seekercontact",
-      confiOption
-    );
+    const response = await fetch(`${BACKEND_URL}/seekercontact`, confiOption);
     const result = await response.json();
 
     if (result.status === 201) {

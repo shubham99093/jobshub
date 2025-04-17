@@ -5,6 +5,7 @@ import "react-toastify/dist/ReactToastify.css";
 import OTPInput from "react-otp-input";
 import Loader from "../../components/Loader";
 import PageTitle from "../../components/PageTitle";
+import { BACKEND_URL } from "../../config";
 
 function RecruiterForgot() {
   const [OTP, setOTP] = useState(""); //for otp input
@@ -22,7 +23,7 @@ function RecruiterForgot() {
   const OtpRequestFunction = async (e: React.MouseEvent) => {
     //     //  form Validation
     e.preventDefault();
-    const res = await fetch("http://localhost:5000/recmail", {
+    const res = await fetch(`${BACKEND_URL}/recmail`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -56,10 +57,7 @@ function RecruiterForgot() {
         },
         body: JSON.stringify(veri),
       };
-      const resp = await fetch(
-        "http://localhost:5000/recruiterverifyotp",
-        config
-      );
+      const resp = await fetch(`${BACKEND_URL}/recruiterverifyotp`, config);
       const result = await resp.json();
       if (result.status === 201) {
         toast.success(result.msg);
@@ -79,10 +77,7 @@ function RecruiterForgot() {
         },
         body: JSON.stringify(data),
       };
-      const response = await fetch(
-        "http://localhost:5000/recruiterforgot",
-        config
-      );
+      const response = await fetch(`${BACKEND_URL}/recruiterforgot`, config);
       const result = await response.json();
       if (result.status === 201) {
         toast.success(result.msg);

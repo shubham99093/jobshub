@@ -8,6 +8,7 @@ import Loader from "../../components/Loader";
 import { useForm } from "react-hook-form";
 import { useSeeker } from "../../contexts/SeekerContext";
 import PageTitle from "../../components/PageTitle";
+import { BACKEND_URL } from "../../config";
 
 function SeekerSignup() {
   const {
@@ -45,7 +46,7 @@ function SeekerSignup() {
   // data send from the front to backend using fetch function
   const userData = async () => {
     // const result = await signup(user);
-    const response = await fetch("http://localhost:5000/signup", {
+    const response = await fetch(`${BACKEND_URL}/signup`, {
       method: "POST",
       body: JSON.stringify(user),
       headers: {

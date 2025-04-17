@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Loader from "../../components/Loader";
 import PageTitle from "../../components/PageTitle";
+import { BACKEND_URL } from "../../config";
 
 function Recruitersendmail() {
   const [isLoading, setIsLoading] = useState(true);
@@ -23,7 +24,7 @@ function Recruitersendmail() {
 
   const send = async (e: React.MouseEvent) => {
     e.preventDefault();
-    const res = await fetch("http://localhost:5000/recmail", {
+    const res = await fetch(`${BACKEND_URL}/recmail`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

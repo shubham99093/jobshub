@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { SeekerHeader, SeekerFooter } from "../../components/seekerComponents";
 import { toast } from "react-toastify";
 import moment from "moment";
-import { set, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 
 import "react-responsive-modal/styles.css";
 import PageTitle from "../../components/PageTitle";
@@ -11,6 +11,7 @@ import ChangepasswordModel from "../../components/ChangePasswordModel";
 import ManageProfileOption from "../../components/ManageProfileOption";
 import { manageProfileOption } from "../../utils/seekerinto";
 import { useSeeker } from "../../contexts/SeekerContext";
+import { BACKEND_URL } from "../../config";
 function SeditProfile() {
   const [open, setOpen] = useState(false);
   const { seeker, setSeeker, accesstoken } = useSeeker();
@@ -54,10 +55,7 @@ function SeditProfile() {
       },
     };
 
-    const response = await fetch(
-      "http://localhost:5000/updateprofile",
-      configOption
-    );
+    const response = await fetch(`${BACKEND_URL}/updateprofile`, configOption);
     const result = await response.json();
     if (result.status === 201) {
       toast("Seeker Profile Update Success");
@@ -85,10 +83,7 @@ function SeditProfile() {
       body: formdata,
     };
 
-    const response = await fetch(
-      "http://localhost:5000/updateimage",
-      configOption
-    );
+    const response = await fetch(`${BACKEND_URL}/updateimage`, configOption);
     const result = await response.json();
     if (result.status === 201) {
       toast.success("Profile Picture Update");

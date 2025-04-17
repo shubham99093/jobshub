@@ -6,6 +6,7 @@ import { RecHeader, RecFooter } from "../../components/recruiterComponents";
 import { useRecruiter } from "../../contexts/RecruiterContext";
 import { IRecruiter } from "../../utils/types";
 import PageTitle from "../../components/PageTitle";
+import { BACKEND_URL } from "../../config";
 function RecruiterContact() {
   const [inputdata, setInputdata] = useState<IRecruiter | null>({});
   const { recruiter, accesstoken } = useRecruiter();
@@ -34,10 +35,7 @@ function RecruiterContact() {
         Authorization: `Bearer ${accesstoken}`,
       },
     };
-    const response = await fetch(
-      "http://localhost:5000/reccontact",
-      confiOption
-    );
+    const response = await fetch(`${BACKEND_URL}/reccontact`, confiOption);
     const result = await response.json();
 
     if (result.status === 201) {

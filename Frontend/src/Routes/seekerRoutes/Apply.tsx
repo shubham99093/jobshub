@@ -4,6 +4,7 @@ import { toast } from "react-toastify";
 import { SeekerFooter, SeekerHeader } from "../../components/seekerComponents";
 import Typewriter from "typewriter-effect";
 import { useSeeker } from "../../contexts/SeekerContext";
+import { BACKEND_URL } from "../../config";
 function Apply() {
   const location = useLocation();
   const navigate = useNavigate();
@@ -61,7 +62,7 @@ function Apply() {
       };
 
       const response = await fetch(
-        `http://localhost:5000/applyjob/${id}`,
+        `${BACKEND_URL}/applyjob/${id}`,
         confiOption
       );
       const result = await response.json();

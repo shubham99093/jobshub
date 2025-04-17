@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 // import ReactStars from "react-rating-star-with-type";
 import { toast } from "react-toastify";
 import Load from "../../Load";
+import { BACKEND_URL } from "../../config";
 
 function RecFooter() {
   const [rating, setrating] = useState(0);
@@ -31,10 +32,7 @@ function RecFooter() {
       },
     };
 
-    const response = await fetch(
-      "http://localhost:5000/getrecruiterreview",
-      config
-    );
+    const response = await fetch(`${BACKEND_URL}/getrecruiterreview`, config);
     const result = await response.json();
     if (result.status == 1) {
       setRev(result.review);
@@ -59,10 +57,7 @@ function RecFooter() {
       body: JSON.stringify(r),
     };
 
-    const response = await fetch(
-      "http://localhost:5000/recruiterreview",
-      config
-    );
+    const response = await fetch(`${BACKEND_URL}/recruiterreview`, config);
     const result = await response.json();
 
     if (result.status === 201) {

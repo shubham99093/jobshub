@@ -3,6 +3,7 @@ import OTPInput from "react-otp-input";
 import { toast } from "react-toastify";
 import { useAdmin } from "../context/adminContext";
 import { useNavigate } from "react-router-dom";
+import { BACKEND_URL } from "../config";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -27,7 +28,7 @@ const Login = () => {
         toast.error("Invalid email format");
         return;
       }
-      const responce = await fetch("http://localhost:5000/sendotp", {
+      const responce = await fetch(`${BACKEND_URL}/sendotp`, {
         method: "POST",
         body: JSON.stringify({ adminemail: email }),
         headers: { "Content-Type": "application/json" },
@@ -59,7 +60,7 @@ const Login = () => {
         toast.error("Invalid email format");
         return;
       }
-      const responce = await fetch("http://localhost:5000/adsignin", {
+      const responce = await fetch(`${BACKEND_URL}/adsignin`, {
         method: "POST",
         body: JSON.stringify({ adminemail: email, otp: OTP }),
         headers: { "Content-Type": "application/json" },

@@ -8,6 +8,7 @@ import { Modal } from "react-responsive-modal";
 import moment from "moment";
 import nodata from "../../../img/nodata.png";
 import { IJobPost } from "../../utils/types";
+import { BACKEND_URL } from "../../config";
 function ManageJob() {
   const [jobtrash, setJobtrash] = useState<{ recid: string | undefined }>({
     recid: "",
@@ -30,10 +31,7 @@ function ManageJob() {
 
   //  ********** get own jobpost data  ************** //
   const getOwnJobpostData = async () => {
-    const response = await fetch(
-      "http://localhost:5000/getownjobpost",
-      requestoption
-    );
+    const response = await fetch(`${BACKEND_URL}/getownjobpost`, requestoption);
     const result = await response.json();
     setJobData(result);
   };
@@ -54,7 +52,7 @@ function ManageJob() {
       return;
     }
     const response = await fetch(
-      `http://localhost:5000/restorejobpost/${jobtrash.recid}`,
+      `${BACKEND_URL}/restorejobpost/${jobtrash.recid}`,
       {
         method: "put",
       }

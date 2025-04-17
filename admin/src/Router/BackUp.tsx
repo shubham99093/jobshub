@@ -1,9 +1,10 @@
 import Wrapper from "../components/Wrapper";
+import { BACKEND_URL } from "../config";
 
 const BackUp = () => {
   const handleDownload = async (type?: "recruiter" | "seeker") => {
     try {
-      const response = await fetch(`http://localhost:5000/backup?type=${type}`);
+      const response = await fetch(`${BACKEND_URL}/backup?type=${type}`);
 
       if (!response.ok) {
         throw new Error("Failed to fetch data");

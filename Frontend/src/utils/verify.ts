@@ -1,3 +1,5 @@
+import { BACKEND_URL } from "../config";
+
 const getVerify = async (
   user: "seeker" | "recruiter",
   token: string
@@ -6,7 +8,7 @@ const getVerify = async (
 
   if (token) {
     try {
-      const responce = await fetch(`http://localhost:5000/verify${user}`, {
+      const responce = await fetch(`${BACKEND_URL}/verify${user}`, {
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",

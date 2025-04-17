@@ -1,6 +1,7 @@
 import { toast } from "react-toastify";
 import Wrapper from "../components/Wrapper";
 import { useAdmin } from "../context/adminContext";
+import { BACKEND_URL } from "../config";
 
 const ManageSeeker = () => {
   const { seeker, setSeeker } = useAdmin();
@@ -14,7 +15,7 @@ const ManageSeeker = () => {
       toast.error("ID not found");
       return;
     }
-    const responce = await fetch(`http://localhost:5000/seeker${state}/${id}`, {
+    const responce = await fetch(`${BACKEND_URL}/seeker${state}/${id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
     });
@@ -47,7 +48,7 @@ const ManageSeeker = () => {
       toast.error("ID not found");
       return;
     }
-    const responce = await fetch(`http://localhost:5000/seekerlistdel/${id}`, {
+    const responce = await fetch(`${BACKEND_URL}/seekerlistdel/${id}`, {
       method: "DELETE",
       headers: { "Content-Type": "application/json" },
     });

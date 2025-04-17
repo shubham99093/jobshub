@@ -2,6 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Wrapper from "../components/Wrapper";
 import { useAdmin } from "../context/adminContext";
 import { toast } from "react-toastify";
+import { BACKEND_URL } from "../config";
 
 const ViewIndustry = () => {
   const { industry, setIndustry } = useAdmin();
@@ -15,7 +16,7 @@ const ViewIndustry = () => {
       toast.error("ID not found");
       return;
     }
-    const responce = await fetch(`http://localhost:5000/industrydel/${id}`, {
+    const responce = await fetch(`${BACKEND_URL}/industrydel/${id}`, {
       method: "DELETE",
       headers: { "Content-Type": "application/json" },
     });

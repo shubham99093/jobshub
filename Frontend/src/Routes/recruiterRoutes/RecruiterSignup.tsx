@@ -7,6 +7,7 @@ import Header from "../../components/Header";
 import Loader from "../../components/Loader";
 import { useForm } from "react-hook-form";
 import PageTitle from "../../components/PageTitle";
+import { BACKEND_URL } from "../../config";
 
 const RecruiterSignup = () => {
   const {
@@ -48,7 +49,7 @@ const RecruiterSignup = () => {
       data.append("cmp_email", newData.cmp_email);
       data.append("rec_mno", newData.rec_mno);
       data.append("cmp_logo", newData.cmp_logo);
-      const response = await fetch("http://localhost:5000/recsignup", {
+      const response = await fetch(`${BACKEND_URL}/recsignup`, {
         method: "POST",
         body: data,
       });

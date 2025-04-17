@@ -11,6 +11,7 @@ import DetailItem from "../../components/DetailItem";
 import ManageProfileOption from "../../components/ManageProfileOption";
 import { manageProfileOption } from "../../utils/recruiterInto";
 import ChangepasswordModel from "../../components/ChangePasswordModel";
+import { BACKEND_URL } from "../../config";
 
 function ManageProfile() {
   const navigate = useNavigate();
@@ -27,7 +28,7 @@ function ManageProfile() {
       },
     };
     const response = await fetch(
-      "http://localhost:5000/recdeleteaccount",
+      `${BACKEND_URL}/recdeleteaccount`,
       configOPtion
     );
     const result = await response.json();

@@ -25,7 +25,7 @@ function SearchJob() {
   const getpostedjob = async () => {
     try {
       const res = await fetch(
-        `http://localhost:5000/getjobpost?search=${search}&gender=${gender}&jobtype=${jobtype}&qualification=${qualification}&salaryrange=${salary}&sort=${JSON.stringify(
+        `${BACKEND_URL}/getjobpost?search=${search}&gender=${gender}&jobtype=${jobtype}&qualification=${qualification}&salaryrange=${salary}&sort=${JSON.stringify(
           sort
         )}`,
         {
@@ -463,7 +463,7 @@ function SearchJob() {
                                 <img
                                   src={
                                     list?.postedby?.cmp_logo
-                                      ? `http://localhost:5000/public/uploads1/companylogo/${list?.postedby?.cmp_logo}`
+                                      ? `${BACKEND_URL}/public/uploads1/companylogo/${list?.postedby?.cmp_logo}`
                                       : pic
                                   }
                                   className="img-responsive"

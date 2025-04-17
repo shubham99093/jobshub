@@ -8,6 +8,7 @@ import "react-responsive-modal/styles.css";
 import { Modal } from "react-responsive-modal";
 import Swal from "sweetalert2";
 import { IJobPost } from "../../utils/types";
+import { BACKEND_URL } from "../../config";
 function RecruiterJobRestor() {
   const navigate = useNavigate();
   const [recruiterpost, setRecruiterpost] = useState<IJobPost[] | null>(null);
@@ -31,10 +32,7 @@ function RecruiterJobRestor() {
         Authorization: `Bearer ${accesstoken}`,
       },
     };
-    const data = await fetch(
-      "http://localhost:5000/trashgetOwnJobpost",
-      configOption
-    );
+    const data = await fetch(`${BACKEND_URL}/trashgetOwnJobpost`, configOption);
     const result = await data.json();
     setRecruiterpost(result);
   };
@@ -54,7 +52,7 @@ function RecruiterJobRestor() {
       },
     };
     const data = await fetch(
-      `http://localhost:5000/deletejobPost/${del?._id}`,
+      `${BACKEND_URL}/deletejobPost/${del?._id}`,
       configOption
     );
     const result = await data.json();
@@ -76,7 +74,7 @@ function RecruiterJobRestor() {
     };
 
     const restore = await fetch(
-      `http://localhost:5000/updaterestorejobpost/${id}`,
+      `${BACKEND_URL}/updaterestorejobpost/${id}`,
       config
     );
     const data = await restore.json();

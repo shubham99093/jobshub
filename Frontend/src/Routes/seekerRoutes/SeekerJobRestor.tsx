@@ -8,6 +8,7 @@ import nodata from "../../../img/nodata.png";
 import PageTitle from "../../components/PageTitle";
 import { useSeeker } from "../../contexts/SeekerContext";
 import { IExtendedJob } from "../../utils/types";
+import { BACKEND_URL } from "../../config";
 
 function SeekerJobRestor() {
   const [trashJob, setTrashJob] = useState<IExtendedJob[] | null>(null);
@@ -27,10 +28,7 @@ function SeekerJobRestor() {
           Authorization: `Bearer ${accesstoken}`,
         },
       };
-      const data = await fetch(
-        "http://localhost:5000/jobrestore",
-        configOption
-      );
+      const data = await fetch(`${BACKEND_URL}/jobrestore`, configOption);
       const result = await data.json();
       setTrashJob(result);
     } catch (err) {
@@ -38,7 +36,7 @@ function SeekerJobRestor() {
     }
   };
 
-  const deleteJobHandler = async (id: string) => {
+  const deleteJobHandler = async (id: string | undefined) => {
     const swalWithBootstrapButtons = Swal.mixin({
       customClass: {
         confirmButton: "btn btn-success",
@@ -83,7 +81,7 @@ function SeekerJobRestor() {
         },
       };
       const data = await fetch(
-        `http://localhost:5000/seekerapplydel/${id}`,
+        `${BACKEND_URL}/seekerapplydel/${id}`,
         configOption
       );
       const result = await data.json();
@@ -93,7 +91,7 @@ function SeekerJobRestor() {
     };
   };
 
-  const restoreHandle = async (id: string) => {
+  const restoreHandle = async (id: string | undefined) => {
     const config = {
       method: "PUT",
       headers: {
@@ -101,10 +99,7 @@ function SeekerJobRestor() {
         Authorization: `Bearer ${accesstoken}`,
       },
     };
-    const restore = await fetch(
-      `http://localhost:5000/jobapplyrestore/${id}`,
-      config
-    );
+    const restore = await fetch(`${BACKEND_URL}/jobapplyrestore/${id}`, config);
     const result = await restore.json();
     if (result.status === 201) {
       Swal.fire({

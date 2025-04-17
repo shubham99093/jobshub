@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import moment from "moment";
 import { IExtendedJob } from "../../utils/types";
 import { useSeeker } from "../../contexts/SeekerContext";
+import { BACKEND_URL } from "../../config";
 function RejectJob() {
   const { accesstoken } = useSeeker();
   const [rejectedJobs, setRejectedJobs] = useState<IExtendedJob[] | null>(null);
@@ -18,10 +19,7 @@ function RejectJob() {
         Authorization: `Bearer ${accesstoken}`,
       },
     };
-    const data = await fetch(
-      "http://localhost:5000/jobhistoryreject",
-      configOption
-    );
+    const data = await fetch(`${BACKEND_URL}/jobhistoryreject`, configOption);
     const result = await data.json();
     setRejectedJobs(result);
   };

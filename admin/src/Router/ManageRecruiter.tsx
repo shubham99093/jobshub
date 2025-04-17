@@ -1,6 +1,7 @@
 import { toast } from "react-toastify";
 import Wrapper from "../components/Wrapper";
 import { useAdmin } from "../context/adminContext";
+import { BACKEND_URL } from "../config";
 
 const ManageRecruiter = () => {
   const { recruiter, setRecruiter } = useAdmin();
@@ -14,13 +15,10 @@ const ManageRecruiter = () => {
       toast.error("ID not found");
       return;
     }
-    const responce = await fetch(
-      `http://localhost:5000/recruiter${state}/${id}`,
-      {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-      }
-    );
+    const responce = await fetch(`${BACKEND_URL}/recruiter${state}/${id}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+    });
 
     const result: { status: number; error: string } = await responce.json();
 
@@ -50,13 +48,10 @@ const ManageRecruiter = () => {
       toast.error("ID not found");
       return;
     }
-    const responce = await fetch(
-      `http://localhost:5000/recruiterlistdel/${id}`,
-      {
-        method: "DELETE",
-        headers: { "Content-Type": "application/json" },
-      }
-    );
+    const responce = await fetch(`${BACKEND_URL}/recruiterlistdel/${id}`, {
+      method: "DELETE",
+      headers: { "Content-Type": "application/json" },
+    });
 
     const result: { status: number; error: string } = await responce.json();
 

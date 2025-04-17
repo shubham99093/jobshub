@@ -8,6 +8,7 @@ import "react-responsive-modal/styles.css";
 import Loader from "../../components/Loader";
 import PageTitle from "../../components/PageTitle";
 import { useSeeker } from "../../contexts/SeekerContext";
+import { BACKEND_URL } from "../../config";
 
 function SeekerLogin() {
   const [user, setUser] = useState({ js_email: "", js_pwd: "" });
@@ -36,7 +37,7 @@ function SeekerLogin() {
 
   const loginUser = async () => {
     if (user.js_email && user.js_pwd) {
-      const responce = await fetch("http://localhost:5000/login", {
+      const responce = await fetch(`${BACKEND_URL}/login`, {
         method: "POST",
         body: JSON.stringify(user),
         headers: { "Content-Type": "application/json" },

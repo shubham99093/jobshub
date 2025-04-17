@@ -4,6 +4,7 @@ import { saveAs } from "file-saver";
 import { toast } from "react-toastify";
 import { useSeeker } from "../../contexts/SeekerContext";
 import PageTitle from "../../components/PageTitle";
+import { BACKEND_URL } from "../../config";
 
 function Resumedetail() {
   const { seeker } = useSeeker();
@@ -12,9 +13,9 @@ function Resumedetail() {
     console.log("seeekerData in resume component before ===>", seeker);
     console.log("seeekerData in resume component before ===>", seeker);
     axios
-      .post("http://localhost:5000/createresume", seeker)
+      .post(`${BACKEND_URL}/createresume`, seeker)
       .then(() =>
-        axios.get("http://localhost:5000/downloadresume", {
+        axios.get(`${BACKEND_URL}/downloadresume`, {
           responseType: "blob",
         })
       )
@@ -45,7 +46,7 @@ function Resumedetail() {
                         <div className="col-md-4 text-center user_profile_img mrg-bot-30">
                           {" "}
                           <img
-                            src={`http://localhost:5000/public/uploads1/seekerprofile/${
+                            src={`${BACKEND_URL}/public/uploads1/seekerprofile/${
                               seeker?.js_profile
                                 ? seeker?.js_profile
                                 : "default.jpg"

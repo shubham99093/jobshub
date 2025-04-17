@@ -7,6 +7,7 @@ import { IJobPost } from "../../utils/types";
 import { useSeeker } from "../../contexts/SeekerContext";
 import { postJobHelp } from "../../utils/seekerinto";
 import InfoCard from "../../components/InfoCard";
+import { BACKEND_URL } from "../../config";
 
 function Seekerhome() {
   const { accesstoken } = useSeeker();
@@ -27,7 +28,7 @@ function Seekerhome() {
           Authorization: `Bearer ${accesstoken}`,
         },
       };
-      const res = await fetch("http://localhost:5000/getjobedu", configOption);
+      const res = await fetch(`${BACKEND_URL}/getjobedu`, configOption);
       const data = await res.json();
       console.log(data);
       setJohb(data);

@@ -4,6 +4,7 @@ import { toast } from "react-toastify";
 import { SeekerFooter, SeekerHeader } from "../../components/seekerComponents";
 import Typewriter from "typewriter-effect";
 import { useSeeker } from "../../contexts/SeekerContext";
+import { BACKEND_URL } from "../../config";
 function ChangePassword() {
   const navigate = useNavigate();
   const [newpass, setNewpass] = useState({
@@ -27,10 +28,7 @@ function ChangePassword() {
       body: JSON.stringify(newpass),
     };
 
-    const response = await fetch(
-      "http://localhost:5000/changepass",
-      configOPtion
-    );
+    const response = await fetch(`${BACKEND_URL}/changepass`, configOPtion);
     const result = await response.json();
     if (result.status === 201) {
       toast.success("Your Password Successfully Change");

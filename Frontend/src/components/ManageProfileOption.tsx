@@ -2,6 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import avtar from "../../img/loginpic.png";
 import { useRecruiter } from "../contexts/RecruiterContext";
 import { useSeeker } from "../contexts/SeekerContext";
+import { BACKEND_URL } from "../config";
 
 interface IManageProfileOption {
   option: { title: string; to: string; icon: string }[];
@@ -56,7 +57,7 @@ const ManageProfileOption = ({
           >
             {" "}
             <img
-              src={`http://localhost:5000/public/uploads1/${
+              src={`${BACKEND_URL}/public/uploads1/${
                 user === "recruiter" ? "companylogo" : "seekerprofile"
               }/${img ? img : "default.jpg"}`}
               alt={alt}

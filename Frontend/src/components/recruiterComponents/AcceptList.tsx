@@ -4,6 +4,7 @@ import Button from "react-bootstrap/Button";
 import nodata from "../../../img/nodata.png";
 import { IApplicationList } from "../../utils/types";
 import { useRecruiter } from "../../contexts/RecruiterContext";
+import { BACKEND_URL } from "../../config";
 const AcceptList = () => {
   useEffect(() => {
     getAcceptList();
@@ -20,10 +21,7 @@ const AcceptList = () => {
   };
 
   const getAcceptList = async () => {
-    const response = await fetch(
-      "http://localhost:5000/acceptlist",
-      requestoption
-    );
+    const response = await fetch(`${BACKEND_URL}/acceptlist`, requestoption);
     const result = await response.json();
     setuserData(result);
   };
@@ -34,10 +32,7 @@ const AcceptList = () => {
         "Content-Type": "application/json",
       },
     };
-    const response = await fetch(
-      `http://localhost:5000/exportcsv/${accesstoken}`,
-      d1
-    );
+    const response = await fetch(`${BACKEND_URL}/exportcsv/${accesstoken}`, d1);
     if (response.status === 200) {
       window.open(response.url, "self");
     } else {
@@ -63,24 +58,26 @@ const AcceptList = () => {
                 </thead>
                 {userdata ? (
                   <tbody>
-                    {userdata?.map((item) => (
-                      <tr key={item?._id}>
-                        <td>
-                          <a href="job-detail.html">
-                            {" "}
-                            <img
-                              src={`http://localhost:5000/public/uploads1/seekerprofile/${item?.js_id?.js_profile}`}
-                              className="avatar-lg"
-                              alt="Avatar"
-                            />
-                            {item?.js_id?.js_name}
-                          </a>
-                        </td>
-                        <td>{item?.js_id?.js_email}</td>
-                        <td>{item?.js_id?.js_mno}</td>
-                        <td>{item?.js_id?.js_gender}</td>
-                      </tr>
-                    ))}
+                    {userdata?.map((item) => {
+                      return (
+                        <tr key={item?._id}>
+                          <td>
+                            <a href="job-detail.html">
+                              {" "}
+                              <img
+                                src={`${BACKEND_URL}/public/uploads1/seekerprofile/${item?.js_id?.js_profile}`}
+                                className="avatar-lg"
+                                alt="Avatar"
+                              />
+                              {item?.js_id?.js_name}
+                            </a>
+                          </td>
+                          <td>{item?.js_id?.js_email}</td>
+                          <td>{item?.js_id?.js_mno}</td>
+                          <td>{item?.js_id?.js_gender}</td>
+                        </tr>
+                      );
+                    })}
                   </tbody>
                 ) : (
                   <td colSpan={5} style={{ textAlign: "center" }}>

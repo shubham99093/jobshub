@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
+import { BACKEND_URL } from "../config";
 
 const useUser = <T>(url: string, token: string) => {
   const [data, setData] = useState<T | null>(null);
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const res = await fetch("http://localhost:5000/" + url, {
+        const res = await fetch(BACKEND_URL + url, {
           method: "GET",
           headers: {
             Accept: "application/json",

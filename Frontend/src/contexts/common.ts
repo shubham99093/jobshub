@@ -1,6 +1,8 @@
+import { BACKEND_URL } from "../config";
+
 export const getUser = async (token: string, user: "seeker" | "recruiter") => {
   try {
-    const res = await fetch(`http://localhost:5000/get${user}`, {
+    const res = await fetch(`${BACKEND_URL}/get${user}`, {
       method: "GET",
       headers: {
         Accept: "application/json",

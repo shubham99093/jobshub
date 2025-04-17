@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import Loader from "../../components/Loader";
 import PageTitle from "../../components/PageTitle";
+import { BACKEND_URL } from "../../config";
 
 function SeekerForgot() {
   const [isLoading, setIsLoading] = useState(true);
@@ -25,15 +26,12 @@ function SeekerForgot() {
   };
 
   const userValid = async () => {
-    const res = await fetch(
-      `http://localhost:5000/seekerforgot/${id}/${token}`,
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
+    const res = await fetch(`${BACKEND_URL}//seekerforgot/${id}/${token}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
     const data = await res.json();
     if (data.status == 201) {
       // toast.sus
@@ -53,7 +51,7 @@ function SeekerForgot() {
     };
 
     const data = await fetch(
-      `http://localhost:5000/seekerforgot/${id}/${token}`,
+      `${BACKEND_URL}/seekerforgot/${id}/${token}`,
       configOption
     );
     const result = await data.json();

@@ -9,6 +9,7 @@ import { useSeeker } from "../../contexts/SeekerContext";
 import ChangepasswordModel from "../../components/ChangePasswordModel";
 import ManageProfileOption from "../../components/ManageProfileOption";
 import { manageProfileOption } from "../../utils/seekerinto";
+import { BACKEND_URL } from "../../config";
 
 function SeekerProfile() {
   const { seeker, accesstoken } = useSeeker();
@@ -30,7 +31,7 @@ function SeekerProfile() {
       },
     };
     const response = await fetch(
-      "http://localhost:5000/sekdeleteaccount",
+      `${BACKEND_URL}/sekdeleteaccount`,
       configOPtion
     );
     const result = await response.json();

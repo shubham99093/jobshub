@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { RecHeader, RecFooter } from "../../components/recruiterComponents";
 import PageTitle from "../../components/PageTitle";
+import { BACKEND_URL } from "../../config";
 function RecruiterChangePass() {
   const navigate = useNavigate();
 
@@ -26,7 +27,7 @@ function RecruiterChangePass() {
         body: JSON.stringify(newpass),
       };
       const response = await fetch(
-        "http://localhost:5000/recchangepass",
+        `${BACKEND_URL}/recchangepass`,
         configOPtion
       );
       const result = await response.json();
