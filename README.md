@@ -2,4 +2,4 @@
 
 Demo site :- https://jobshubfrontend.vercel.app/
 
-Demo Admin :- https://jobshub-ashen.vercel.app/
+Demo Admin :- https://jobshub-admin.vercel.app/
