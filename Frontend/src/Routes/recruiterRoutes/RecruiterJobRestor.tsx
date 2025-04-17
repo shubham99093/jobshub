@@ -37,9 +37,9 @@ function RecruiterJobRestor() {
     setRecruiterpost(result);
   };
 
-  const delHandle = (item: string) => {
+  const delHandle = (item: string | undefined) => {
     setDel({
-      _id: item,
+      _id: item || "",
     });
   };
 
@@ -64,7 +64,7 @@ function RecruiterJobRestor() {
     }
   };
 
-  const restoreHandle = async (id: string) => {
+  const restoreHandle = async (id: string | undefined) => {
     const config = {
       method: "PUT",
       headers: {

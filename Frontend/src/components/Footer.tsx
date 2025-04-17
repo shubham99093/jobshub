@@ -69,8 +69,8 @@ function Footer() {
                     <div className="form-group">
                       {" "}
                       <span className="custom-checkbox">
-                        <input type="checkbox" id={4} />
-                        <label htmlFor={4} />
+                        <input type="checkbox" id={"4"} />
+                        <label htmlFor={"4"} />
                         Remember Me{" "}
                       </span>{" "}
                       <a href="#" title="Forget" className="fl-right">
@@ -125,8 +125,8 @@ function Footer() {
                     <div className="form-group">
                       {" "}
                       <span className="custom-checkbox">
-                        <input type="checkbox" id={44} />
-                        <label htmlFor={44} />
+                        <input type="checkbox" id={"44"} />
+                        <label htmlFor={"44"} />
                         Remember Me{" "}
                       </span>{" "}
                       <a href="#" title="Forget" className="fl-right">

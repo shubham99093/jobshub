@@ -43,9 +43,9 @@ function JobHistory() {
     setAppliedJobs(result);
   };
 
-  const delHandle = (item: string) => {
+  const delHandle = (item: string | undefined) => {
     setDel({
-      _id: item,
+      _id: item || "",
     });
   };
 
@@ -182,7 +182,7 @@ function JobHistory() {
                                 data-toggle="tooltip"
                                 onClick={() => {
                                   onOpenModal();
-                                  delHandle(item._id);
+                                  delHandle(item?._id);
                                 }}
                               >
                                 <i className="fa fa-trash-o" />

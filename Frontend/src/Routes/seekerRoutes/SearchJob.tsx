@@ -6,6 +6,8 @@ import "react-responsive-modal/styles.css";
 import { useSeeker } from "../../contexts/SeekerContext";
 import { IJobPost } from "../../utils/types";
 import PageTitle from "../../components/PageTitle";
+import { BACKEND_URL } from "../../config";
+import Loader from "../../components/Loader";
 
 function SearchJob() {
   const [jobsData, setJobsData] = useState<IJobPost[] | null>(null);
@@ -16,32 +18,35 @@ function SearchJob() {
   const [salary, setSalary] = useState("");
   const [qualification, setqualification] = useState("");
   const [jobtype, setJobtype] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
+
   const navigate = useNavigate();
 
   useEffect(() => {
+    const getpostedjob = async () => {
+      try {
+        const res = await fetch(
+          `${BACKEND_URL}/getjobpost?search=${search}&gender=${gender}&jobtype=${jobtype}&qualification=${qualification}&salaryrange=${salary}&sort=${JSON.stringify(
+            sort
+          )}`,
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${accesstoken}`,
+            },
+          }
+        );
+        const data = await res.json();
+        setJobsData(data);
+      } catch (err) {
+        console.log(err);
+      } finally {
+        setIsLoading(false);
+      }
+    };
     getpostedjob();
-  }, [search, gender, jobtype, qualification, salary, sort]);
-
-  const getpostedjob = async () => {
-    try {
-      const res = await fetch(
-        `${BACKEND_URL}/getjobpost?search=${search}&gender=${gender}&jobtype=${jobtype}&qualification=${qualification}&salaryrange=${salary}&sort=${JSON.stringify(
-          sort
-        )}`,
-        {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${accesstoken}`,
-          },
-        }
-      );
-      const data = await res.json();
-      setJobsData(data);
-    } catch (err) {
-      console.log(err);
-    }
-  };
+  }, [search, gender, jobtype, qualification, salary, sort, accesstoken]);
 
   const jobinput = (item: string | undefined) => {
     navigate("/apply", { state: item });
@@ -59,6 +64,10 @@ function SearchJob() {
     setSalary("");
     setJobtype("");
   };
+
+  if (isLoading) {
+    return <Loader />;
+  }
 
   return (
     <>

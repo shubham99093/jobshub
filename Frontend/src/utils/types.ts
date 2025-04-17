@@ -54,6 +54,7 @@ export interface IRecruiter {
   isBlock?: number | null;
   createdAt?: Date;
   updatedAt?: Date;
+  designation?: string;
 }
 
 export interface IApplicationList {

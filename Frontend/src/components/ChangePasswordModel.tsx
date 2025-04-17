@@ -2,7 +2,6 @@ import { useState } from "react";
 import Modal from "react-responsive-modal";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { useRecruiter } from "../contexts/RecruiterContext";
 import { BACKEND_URL } from "../config";
 
 interface IChangePassword {

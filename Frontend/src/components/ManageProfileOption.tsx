@@ -1,5 +1,4 @@
 import { Link, useNavigate } from "react-router-dom";
-import avtar from "../../img/loginpic.png";
 import { useRecruiter } from "../contexts/RecruiterContext";
 import { useSeeker } from "../contexts/SeekerContext";
 import { BACKEND_URL } from "../config";
