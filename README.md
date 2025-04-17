@@ -1,3 +1,4 @@
 # job's hub
 
-Like site :- https://jobshubfrontend.vercel.app/
+Demo site :- https://jobshubfrontend.vercel.app/
+Demo Admin :- https://jobshub-ashen.vercel.app/
