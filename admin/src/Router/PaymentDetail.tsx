@@ -1,45 +1,6 @@
 import Wrapper from "../components/Wrapper";
 import { useAdmin } from "../context/adminContext";
 
-const reviews = [
-  {
-    id: 1,
-    user: "John Doe",
-    email: "john@example.com",
-    subject: "Great Service",
-    message: "I loved the experience!",
-  },
-  {
-    id: 2,
-    user: "Jane Smith",
-    email: "jane@example.com",
-    subject: "Feedback",
-    message: "Could improve response time.",
-  },
-  {
-    id: 3,
-    user: "Michael Brown",
-    email: "michael@example.com",
-    subject: "Issue",
-    message: "Had trouble logging in.",
-  },
-  {
-    id: 4,
-    user: "Emily Davis",
-    email: "emily@example.com",
-    subject: "Support",
-    message:
-      "Customer support was helpful! lorem Customer support was helpful! lorem Customer support was helpful! lorem Customer support was helpful! lorem Customer support was helpful! lorem Customer support was helpful! lorem Customer support was helpful! lorem Customer support was helpful! lorem Customer support was helpful! lorem Customer support was helpful! lorem Customer support was helpful! lorem Customer support was helpful! lorem ",
-  },
-  {
-    id: 3,
-    user: "Michael Brown",
-    email: "michael@example.com",
-    subject: "Issue",
-    message: "Had trouble logging in.",
-  },
-];
-
 const PaymentDetail = () => {
   const { payment } = useAdmin();
   return (
